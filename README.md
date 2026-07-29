@@ -1,6 +1,6 @@
 # Competitive Programming Templates & Snippets
 
-A personal collection of C++ templates, algorithm implementations, and VS Code snippets used for competitive programming (Codeforces, CSES, UVa, etc.). Everything here is written for quick reuse during contests — clarity and speed of adaptation over production-grade polish.
+A personal collection of C++ templates, algorithm implementations, and VS Code snippets used for competitive programming. Everything here is written for quick reuse during contests.
 
 ## Structure
 
