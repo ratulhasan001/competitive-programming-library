@@ -25,7 +25,7 @@ A personal collection of C++ templates, algorithm implementations, and VS Code s
 |---|---|
 | [template1.cpp](Template/template1.cpp) | Minimal contest starter: fast I/O, common typedefs (`ll`, `pii`), `debug()` macro (disabled on `ONLINE_JUDGE`), multi-test-case loop. |
 | [template2.cpp](Template/template2.cpp) | Extended starter with `#pragma GCC optimization`, `pb_ds` ordered set (order-statistics tree), and `deBUG.h` include. |
-| [deBUG.h](Template/deBUG.h) | Standalone debug-printing header — pretty-prints containers, pairs, tuples, stacks, queues, and priority queues via a variadic `debug(...)` macro. |
+| [deBUG.h](Template/deBUG.h) | Standalone debug-printing header - pretty-prints containers, pairs, tuples, stacks, queues, and priority queues via a variadic `debug(...)` macro. |
 | [cpp.json](Template/cpp.json) | VS Code C++ snippet definitions (see below). |
 
 ### VS Code snippets (`Template/cpp.json`)
@@ -69,7 +69,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [gcd_lcm_power.cpp](NumberTheory/gcd_lcm_power.cpp) | `gcd`, `lcm`, `binpow`, `powmod`, `isPowerof`, power-of-two helpers |
 | [extended_euclidean.cpp](NumberTheory/extended_euclidean.cpp) | Extended Euclidean algorithm (`ax + by = gcd(a,b)`) |
 | [mod_inverse.cpp](NumberTheory/mod_inverse.cpp) | Modular inverse via extended Euclidean (works for non-prime modulus) |
-| [crt.cpp](NumberTheory/crt.cpp) | Chinese Remainder Theorem — combine congruences, moduli need not be coprime |
+| [crt.cpp](NumberTheory/crt.cpp) | Chinese Remainder Theorem - combine congruences, moduli need not be coprime |
 
 ## Bitmasking/
 
@@ -79,7 +79,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [subset_sum_bitmask.cpp](Bitmasking/subset_sum_bitmask.cpp) | Brute-force subset sum by enumerating all `2^n` masks |
 | [binary_conversion.cpp](Bitmasking/binary_conversion.cpp) | Binary ↔ decimal conversion, including two's-complement negatives |
 | [linear_basis_xor.cpp](Bitmasking/linear_basis_xor.cpp) | XOR linear basis for maximum-XOR-subset queries |
-| [sos_dp.cpp](Bitmasking/sos_dp.cpp) | Sum over Subsets (SOS) DP — O(n·2^n) subset-sum aggregation |
+| [sos_dp.cpp](Bitmasking/sos_dp.cpp) | Sum over Subsets (SOS) DP - O(n·2^n) subset-sum aggregation |
 
 ## DP/
 
@@ -91,8 +91,8 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [subset_sum.cpp](DP/subset_sum.cpp) | Subset sum (existence check) |
 | [equal_sum_array_partition.cpp](DP/equal_sum_array_partition.cpp) | Partition array into two equal-sum subsets |
 | [minimum_subset_sum_difference.cpp](DP/minimum_subset_sum_difference.cpp) | Minimize the difference between two subset sums |
-| [coin_change1.cpp](DP/coin_change1.cpp) | Coin change — count number of ways |
-| [coin_change_2.cpp](DP/coin_change_2.cpp) | Coin change — minimum number of coins |
+| [coin_change1.cpp](DP/coin_change1.cpp) | Coin change - count number of ways |
+| [coin_change_2.cpp](DP/coin_change_2.cpp) | Coin change - minimum number of coins |
 | [bounded_knapsack_binary_lifting.cpp](DP/bounded_knapsack_binary_lifting.cpp) | Bounded coin change solved as 0/1 knapsack via binary lifting on item counts |
 | [min_cost_to_reach_value.cpp](DP/min_cost_to_reach_value.cpp) | Minimum weight needed to reach each achievable value (dual of knapsack) |
 | [lcs.cpp](DP/lcs.cpp) | Longest Common Subsequence (with reconstruction) |
@@ -101,11 +101,11 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [shortest_common_supersequence.cpp](DP/shortest_common_supersequence.cpp) | Shortest Common Supersequence (with reconstruction) |
 | [check_if_string_is_a_subseq.cpp](DP/check_if_string_is_a_subseq.cpp) | Check if one string is a subsequence of another (O(N) two-pointer and O(N·M) LCS approach) |
 | [undirected_cycle_detect_using_dsu.cpp](DP/undirected_cycle_detect_using_dsu.cpp) | Cycle detection in an undirected graph using DSU (union by size / by rank) |
-| [fibonacci.cpp](DP/fibonacci.cpp) | Fibonacci — memoized recursion (+ iterative and mod variants inline) |
+| [fibonacci.cpp](DP/fibonacci.cpp) | Fibonacci - memoized recursion (+ iterative and mod variants inline) |
 | [derangement.cpp](DP/derangement.cpp) | Count derangements (permutations with no fixed point) |
-| [kadane_max_subarray.cpp](DP/kadane_max_subarray.cpp) | Kadane's algorithm — maximum subarray sum |
+| [kadane_max_subarray.cpp](DP/kadane_max_subarray.cpp) | Kadane's algorithm - maximum subarray sum |
 | [longest_increasing_subsequence.cpp](DP/longest_increasing_subsequence.cpp) | LIS in O(n log n), with reconstruction |
-| [digit_dp.cpp](DP/digit_dp.cpp) | Digit DP template — count numbers in a range with a digit-based property |
+| [digit_dp.cpp](DP/digit_dp.cpp) | Digit DP template - count numbers in a range with a digit-based property |
 
 ## Graph/
 
@@ -123,19 +123,19 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [kruskal.cpp](Graph/kruskal.cpp) | Kruskal's MST using DSU |
 | [prims.cpp](Graph/prims.cpp) | Prim's MST using a priority queue |
 | [segment_tree.cpp](Graph/segment_tree.cpp) | Segment tree (range min query + point update) |
-| [tarjan_scc.cpp](Graph/tarjan_scc.cpp) | Tarjan's algorithm — strongly connected components |
+| [tarjan_scc.cpp](Graph/tarjan_scc.cpp) | Tarjan's algorithm - strongly connected components |
 | [bridges_articulation_points.cpp](Graph/bridges_articulation_points.cpp) | Bridges and articulation points via DFS low-link |
-| [topological_sort_dfs.cpp](Graph/topological_sort_dfs.cpp) | Topological sort — DFS-based |
-| [topological_sort_kahn.cpp](Graph/topological_sort_kahn.cpp) | Topological sort — Kahn's algorithm (BFS-based, detects cycles) |
+| [topological_sort_dfs.cpp](Graph/topological_sort_dfs.cpp) | Topological sort - DFS-based |
+| [topological_sort_kahn.cpp](Graph/topological_sort_kahn.cpp) | Topological sort - Kahn's algorithm (BFS-based, detects cycles) |
 | [lca_binary_lifting.cpp](Graph/lca_binary_lifting.cpp) | Lowest Common Ancestor via binary lifting |
 | [heavy_light_decomposition.cpp](Graph/heavy_light_decomposition.cpp) | Heavy-Light Decomposition for path queries on a tree |
 | [centroid_decomposition.cpp](Graph/centroid_decomposition.cpp) | Centroid decomposition for divide-and-conquer on trees |
-| [dinic_max_flow.cpp](Graph/dinic_max_flow.cpp) | Dinic's algorithm — maximum flow |
+| [dinic_max_flow.cpp](Graph/dinic_max_flow.cpp) | Dinic's algorithm - maximum flow |
 | [mcmf.cpp](Graph/mcmf.cpp) | Min-Cost Max-Flow via successive shortest augmenting paths (SPFA) |
-| [tsp_bitmask.cpp](Graph/tsp_bitmask.cpp) | Travelling Salesman Problem — bitmask DP (Held-Karp) |
+| [tsp_bitmask.cpp](Graph/tsp_bitmask.cpp) | Travelling Salesman Problem - bitmask DP (Held-Karp) |
 | [two_sat.cpp](Graph/two_sat.cpp) | 2-SAT solver via implication graph + Kosaraju's SCC |
 | [bipartite_check.cpp](Graph/bipartite_check.cpp) | Bipartite check via 2-coloring (BFS) |
-| [bipartite_matching.cpp](Graph/bipartite_matching.cpp) | Maximum bipartite matching — Kuhn's algorithm |
+| [bipartite_matching.cpp](Graph/bipartite_matching.cpp) | Maximum bipartite matching - Kuhn's algorithm |
 
 ## DataStructures/
 
@@ -144,8 +144,8 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [fenwick_tree.cpp](DataStructures/fenwick_tree.cpp) | Fenwick / Binary Indexed Tree with range update + range query |
 | [sparse_table.cpp](DataStructures/sparse_table.cpp) | Sparse table for O(1) range-maximum queries (static array) |
 | [segment_tree_lazy.cpp](DataStructures/segment_tree_lazy.cpp) | Range-sum segment tree with lazy propagation (range add) |
-| [trie.cpp](DataStructures/trie.cpp) | Trie (prefix tree) — insert and search |
-| [ordered_set.cpp](DataStructures/ordered_set.cpp) | PBDS ordered set — `find_by_order` / `order_of_key` |
+| [trie.cpp](DataStructures/trie.cpp) | Trie (prefix tree) - insert and search |
+| [ordered_set.cpp](DataStructures/ordered_set.cpp) | PBDS ordered set - `find_by_order` / `order_of_key` |
 | [mo_algorithm.cpp](DataStructures/mo_algorithm.cpp) | Mo's algorithm for offline range queries (distinct-count example) |
 | [dsu_path_compression.cpp](DataStructures/dsu_path_compression.cpp) | Disjoint Set Union with path compression + union by rank, as a reusable struct |
 
@@ -155,7 +155,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 |---|---|
 | [z_function.cpp](String/z_function.cpp) | Z-function and its use for substring search |
 | [string_hashing.cpp](String/string_hashing.cpp) | Single-mod string hash and a double-mod rolling hash (O(1) substring hash) |
-| [manacher.cpp](String/manacher.cpp) | Manacher's algorithm — longest palindromic substring in O(n) |
+| [manacher.cpp](String/manacher.cpp) | Manacher's algorithm - longest palindromic substring in O(n) |
 | [kmp.cpp](String/kmp.cpp) | Knuth-Morris-Pratt prefix function + pattern search |
 | [suffix_array.cpp](String/suffix_array.cpp) | Suffix array construction (O(n log² n)) + Kasai's LCP array |
 
@@ -181,7 +181,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | File | Description |
 |---|---|
 | [backtrack.cpp](Backtracking/backtrack.cpp) | Generates all permutations of `1..n` via backtracking |
-| [n_queens.cpp](Backtracking/n_queens.cpp) | N-Queens — all placements via column/diagonal tracking |
+| [n_queens.cpp](Backtracking/n_queens.cpp) | N-Queens - all placements via column/diagonal tracking |
 
 ## Misc/
 
@@ -207,5 +207,5 @@ Files that use PBDS (`ordered_set.cpp`, `Template/template2.cpp`) rely on GCC's 
 ## Notes
 
 - `deBUG.h` / the `debug(...)` macro is compiled out when `ONLINE_JUDGE` is defined, so it's safe to leave in submissions.
-- Some files include commented-out alternate approaches or complexity notes inline (e.g. `subset_sum.cpp`, `coin_change1.cpp`) — kept for quick reference during contests.
+- Some files include commented-out alternate approaches or complexity notes inline (e.g. `subset_sum.cpp`, `coin_change1.cpp`) - kept for quick reference during contests.
 - `Math/formulas.md`, `Misc/python_cheatsheet.py`, and `Misc/debug_checklist.md` are reference notes rather than runnable code.
