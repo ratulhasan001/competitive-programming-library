@@ -5,51 +5,51 @@ A personal collection of C++ templates, algorithm implementations, and VS Code s
 ## Structure
 
 ```
-├── Template/        Contest boilerplate, debug macros, and VS Code snippets
+├── Template/         Contest boilerplate, debug macros, and VS Code snippets
 ├── NumberTheory/     Primality, factorization, combinatorics, modular arithmetic
 ├── Bitmasking/       Bit tricks, bitmask DP helpers, XOR basis
 ├── DP/               Dynamic programming problems and patterns
 ├── Graph/            Graph algorithms and data structures
-├── DataStructures/   Fenwick tree, sparse table, lazy segment tree, trie, ordered set, Mo's algorithm
-├── String/           Z-function, string hashing, Manacher's algorithm
-├── Geometry/         Points, cross product, convex hull
+├── DataStructures/   Fenwick tree, sparse table, lazy segment tree, trie, ordered set, Mo's algorithm, DSU
+├── String/           Z-function, KMP, string hashing, Manacher's algorithm, suffix array + LCP
+├── Geometry/         Points, cross product, convex hull, segment intersection, polygon area
 ├── Math/             Matrix exponentiation, FFT, formula reference
 ├── Backtracking/     Backtracking / recursion examples
 ├── Misc/             STL & Python cheatsheets, debugging checklist
-└── contest.docx      Contest notes
+└── Onsite Format.docx   Onsite contest format notes (Word document)
 ```
 
 ## Template/
 
 | File | Description |
 |---|---|
-| [template1.cpp](Template/template1.cpp) | Minimal contest starter: fast I/O, common typedefs (`ll`, `pii`), `debug()` macro (disabled on `ONLINE_JUDGE`), multi-test-case loop. |
-| [template2.cpp](Template/template2.cpp) | Extended starter with `#pragma GCC optimization`, `pb_ds` ordered set (order-statistics tree), and `deBUG.h` include. |
-| [deBUG.h](Template/deBUG.h) | Standalone debug-printing header - pretty-prints containers, pairs, tuples, stacks, queues, and priority queues via a variadic `debug(...)` macro. |
+| [template1.cpp](Template/template1.cpp) | Self-contained contest starter: fast I/O, `ll` alias, `all`/`rall`/`minimum`/`maximum` macros, inline `debug(...)` / `debug_array` printer (disabled when `ONLINE_JUDGE` is defined), multi-test-case loop. |
+| [template2.cpp](Template/template2.cpp) | Extended starter: `#pragma GCC optimization` lines (GCC ignores these; the valid pragma name is `optimize`), `pb_ds` ordered set (order-statistics tree), extra aliases (`ld`, `ull`, `u128`, `pii`, `pll`), and a `deBUG.h` include guarded by `ONLINE_JUDGE`. |
+| [deBUG.h](Template/deBUG.h) | Debug-printing header (include after `<bits/stdc++.h>`; it has no includes of its own) - pretty-prints containers, pairs, tuples, stacks, queues, priority queues and C arrays via `debug(...)` / `debug_array(arr, n)`. |
 | [cpp.json](Template/cpp.json) | VS Code C++ snippet definitions (see below). |
 
 ### VS Code snippets (`Template/cpp.json`)
 
 | Prefix | Purpose |
 |---|---|
-| `snippet` | Bundle of number-theory helpers: primality test, `isPowerof`, `powmod`, `binpow`, palindrome check |
-| `cpp` | Full contest template (fast I/O + typedefs + macros) |
+| `snippet` | Bundle of helpers: primality test, `isPowerof`, `powmod`, `binpow`, palindrome check, `isSubstring`, big-number remainder / long division, bitwise sieve |
+| `cpp` | Same as `template1.cpp` (fast I/O, macros, inline debug printer) |
 | `basic` | Minimal `main()` skeleton |
-| `debug` | Debug-printer macro block |
+| `debug` | Same as `template2.cpp` (pragmas, PBDS, aliases, guarded `deBUG.h` include) |
 | `isPrime` | Trial-division primality check |
 | `bitwiseSieve` | Sieve of Eratosthenes using bitwise tricks |
-| `bitsetSieve` | Sieve of Eratosthenes using `bitset` |
+| `bitsetSieve` | Sieve of Eratosthenes using `bitset` (needs fixing: mixes `isPrime`/`is_prime` and has statements at namespace scope; use `NumberTheory/sieve_bitset.cpp` instead) |
 | `divisor` | Divisor enumeration |
 | `powmod` | Modular exponentiation |
 | `binpow` | Binary exponentiation |
 | `customHash` | Anti-hash-collision custom hash for `unordered_map`/`set` |
-| `isSubstring` | Substring check |
+| `isSubstring` | Substring check (known bug: returns `find(...)` cast to `bool`, so a match at index 0 reports false) |
 | `execution` | Execution timer |
-| `onlyDebug` | Debug-only code block guard |
+| `onlyDebug` | `#ifdef ONLINE_JUDGE` block that stubs out `debug` on the judge and includes `deBUG.h` locally |
 | `orderedSet` | PBDS ordered set (order-statistics) |
-| `MillerRabin` | Miller-Rabin primality test |
+| `MillerRabin` | Miller-Rabin primality test (uses the `ull` / `u128` aliases from `template2.cpp`) |
 | `dfs` | DFS traversal skeleton |
-| `prime_factor` | Prime factorization |
+| `prime_factor` | Prime factorization with a smallest-prime-factor sieve (known bug: loops use `i <= MAXN`, one past the array end; `NumberTheory/smallest_prime_factor.cpp` has the corrected bound) |
 
 To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.json`).
 
@@ -57,7 +57,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 
 | File | Description |
 |---|---|
-| [sieve_normal.cpp](NumberTheory/sieve_normal.cpp) | Trial-division primality check |
+| [sieve_normal.cpp](NumberTheory/sieve_normal.cpp) | Trial-division primality check (despite the file name, not a sieve) |
 | [sieve_bitwise.cpp](NumberTheory/sieve_bitwise.cpp) | Sieve of Eratosthenes packed into bits of an `int` array |
 | [sieve_bitset.cpp](NumberTheory/sieve_bitset.cpp) | Sieve of Eratosthenes using `std::bitset` |
 | [miller_rabin.cpp](NumberTheory/miller_rabin.cpp) | Deterministic Miller-Rabin primality test (64-bit safe) |
@@ -65,7 +65,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [divisors.cpp](NumberTheory/divisors.cpp) | Enumerate all divisors of `n` in O(√n) |
 | [smallest_prime_factor.cpp](NumberTheory/smallest_prime_factor.cpp) | Smallest-prime-factor sieve + O(log n) factorization |
 | [euler_totient.cpp](NumberTheory/euler_totient.cpp) | Euler's totient function for all values `1..n` |
-| [factorial_ncr.cpp](NumberTheory/factorial_ncr.cpp) | Precomputed factorials/inverse factorials, `nCr`, `nPr` (mod and plain) |
+| [factorial_ncr.cpp](NumberTheory/factorial_ncr.cpp) | Precomputed factorials / inverse factorials mod 1e9+7 for `nCr`; plain (non-mod) `nCr_plain` and `nPr` |
 | [gcd_lcm_power.cpp](NumberTheory/gcd_lcm_power.cpp) | `gcd`, `lcm`, `binpow`, `powmod`, `isPowerof`, power-of-two helpers |
 | [extended_euclidean.cpp](NumberTheory/extended_euclidean.cpp) | Extended Euclidean algorithm (`ax + by = gcd(a,b)`) |
 | [mod_inverse.cpp](NumberTheory/mod_inverse.cpp) | Modular inverse via extended Euclidean (works for non-prime modulus) |
@@ -86,22 +86,22 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | File | Problem / Pattern |
 |---|---|
 | [0-1_knapsack.cpp](DP/0-1_knapsack.cpp) | 0/1 Knapsack |
-| [unbounded_knapsack.cpp](DP/unbounded_knapsack.cpp) | Unbounded knapsack (memoized) |
+| [unbounded_knapsack.cpp](DP/unbounded_knapsack.cpp) | Unbounded knapsack (bottom-up tabulation) |
 | [rod_cutting.cpp](DP/rod_cutting.cpp) | Rod cutting (unbounded knapsack variant) |
 | [subset_sum.cpp](DP/subset_sum.cpp) | Subset sum (existence check) |
 | [equal_sum_array_partition.cpp](DP/equal_sum_array_partition.cpp) | Partition array into two equal-sum subsets |
 | [minimum_subset_sum_difference.cpp](DP/minimum_subset_sum_difference.cpp) | Minimize the difference between two subset sums |
 | [coin_change1.cpp](DP/coin_change1.cpp) | Coin change - count number of ways |
 | [coin_change_2.cpp](DP/coin_change_2.cpp) | Coin change - minimum number of coins |
-| [bounded_knapsack_binary_lifting.cpp](DP/bounded_knapsack_binary_lifting.cpp) | Bounded coin change solved as 0/1 knapsack via binary lifting on item counts |
+| [bounded_knapsack_binary_lifting.cpp](DP/bounded_knapsack_binary_lifting.cpp) | Bounded knapsack via binary splitting of item counts into 0/1 items, O(n·S·log c). Note: the program counts *ways*, which over-counts when split groups repeat (e.g. c = 5 → 1, 2, 2); the splitting is valid for feasibility / optimisation only |
 | [min_cost_to_reach_value.cpp](DP/min_cost_to_reach_value.cpp) | Minimum weight needed to reach each achievable value (dual of knapsack) |
 | [lcs.cpp](DP/lcs.cpp) | Longest Common Subsequence (with reconstruction) |
 | [lcs_subtring.cpp](DP/lcs_subtring.cpp) | Longest Common Substring |
 | [lps.cpp](DP/lps.cpp) | Longest Palindromic Subsequence |
 | [shortest_common_supersequence.cpp](DP/shortest_common_supersequence.cpp) | Shortest Common Supersequence (with reconstruction) |
-| [check_if_string_is_a_subseq.cpp](DP/check_if_string_is_a_subseq.cpp) | Check if one string is a subsequence of another (O(N) two-pointer and O(N·M) LCS approach) |
+| [check_if_string_is_a_subseq.cpp](DP/check_if_string_is_a_subseq.cpp) | Check if one string is a subsequence of another via LCS, O(N·M); an O(N) two-pointer version is included as a comment |
 | [undirected_cycle_detect_using_dsu.cpp](DP/undirected_cycle_detect_using_dsu.cpp) | Cycle detection in an undirected graph using DSU (union by size / by rank) |
-| [fibonacci.cpp](DP/fibonacci.cpp) | Fibonacci - memoized recursion (+ iterative and mod variants inline) |
+| [fibonacci.cpp](DP/fibonacci.cpp) | Fibonacci - memoized recursion with F(0) = F(1) = 1 (iterative and mod variants as comments) |
 | [derangement.cpp](DP/derangement.cpp) | Count derangements (permutations with no fixed point) |
 | [kadane_max_subarray.cpp](DP/kadane_max_subarray.cpp) | Kadane's algorithm - maximum subarray sum |
 | [longest_increasing_subsequence.cpp](DP/longest_increasing_subsequence.cpp) | LIS in O(n log n), with reconstruction |
@@ -112,7 +112,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | File | Algorithm |
 |---|---|
 | [shortest_path_bfs.cpp](Graph/shortest_path_bfs.cpp) | BFS shortest path with path reconstruction |
-| [bfs_2D.cpp](Graph/bfs_2D.cpp) | BFS on a 2D grid |
+| [bfs_2D.cpp](Graph/bfs_2D.cpp) | BFS distances on an n×m grid from a start cell (4-directional; the grid is read but cells are not treated as obstacles) |
 | [bfs_01.cpp](Graph/bfs_01.cpp) | 0-1 BFS shortest path (deque-based) |
 | [dfs_depth_height.cpp](Graph/dfs_depth_height.cpp) | DFS computing node depth and subtree height |
 | [cycle_detection_using_dfs.cpp](Graph/cycle_detection_using_dfs.cpp) | Cycle detection in an undirected graph using DFS |
@@ -122,14 +122,14 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 | [floyd_warshall.cpp](Graph/floyd_warshall.cpp) | Floyd-Warshall all-pairs shortest path |
 | [kruskal.cpp](Graph/kruskal.cpp) | Kruskal's MST using DSU |
 | [prims.cpp](Graph/prims.cpp) | Prim's MST using a priority queue |
-| [segment_tree.cpp](Graph/segment_tree.cpp) | Segment tree (range min query + point update) |
+| [segment_tree.cpp](Graph/segment_tree.cpp) | Segment tree for range-minimum queries (the point-update function recombines with `+` instead of `min` and is not called from `main`) |
 | [tarjan_scc.cpp](Graph/tarjan_scc.cpp) | Tarjan's algorithm - strongly connected components |
 | [bridges_articulation_points.cpp](Graph/bridges_articulation_points.cpp) | Bridges and articulation points via DFS low-link |
 | [topological_sort_dfs.cpp](Graph/topological_sort_dfs.cpp) | Topological sort - DFS-based |
 | [topological_sort_kahn.cpp](Graph/topological_sort_kahn.cpp) | Topological sort - Kahn's algorithm (BFS-based, detects cycles) |
 | [lca_binary_lifting.cpp](Graph/lca_binary_lifting.cpp) | Lowest Common Ancestor via binary lifting |
-| [heavy_light_decomposition.cpp](Graph/heavy_light_decomposition.cpp) | Heavy-Light Decomposition for path queries on a tree |
-| [centroid_decomposition.cpp](Graph/centroid_decomposition.cpp) | Centroid decomposition for divide-and-conquer on trees |
+| [heavy_light_decomposition.cpp](Graph/heavy_light_decomposition.cpp) | Heavy-Light Decomposition skeleton (subtree sizes, heavy child, chain heads, positions); the path-query segment-tree calls are left as comments |
+| [centroid_decomposition.cpp](Graph/centroid_decomposition.cpp) | Centroid decomposition skeleton for divide-and-conquer on trees (problem-specific work left as a placeholder) |
 | [dinic_max_flow.cpp](Graph/dinic_max_flow.cpp) | Dinic's algorithm - maximum flow |
 | [mcmf.cpp](Graph/mcmf.cpp) | Min-Cost Max-Flow via successive shortest augmenting paths (SPFA) |
 | [tsp_bitmask.cpp](Graph/tsp_bitmask.cpp) | Travelling Salesman Problem - bitmask DP (Held-Karp) |
@@ -141,7 +141,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 
 | File | Description |
 |---|---|
-| [fenwick_tree.cpp](DataStructures/fenwick_tree.cpp) | Fenwick / Binary Indexed Tree with range update + range query |
+| [fenwick_tree.cpp](DataStructures/fenwick_tree.cpp) | Fenwick / Binary Indexed Tree (1-indexed): point update + prefix / range-sum query; also a difference-array `upd(l, r, v)` for range add with point query (a single BIT cannot combine range add with range sum) |
 | [sparse_table.cpp](DataStructures/sparse_table.cpp) | Sparse table for O(1) range-maximum queries (static array) |
 | [segment_tree_lazy.cpp](DataStructures/segment_tree_lazy.cpp) | Range-sum segment tree with lazy propagation (range add) |
 | [trie.cpp](DataStructures/trie.cpp) | Trie (prefix tree) - insert and search |
@@ -180,7 +180,7 @@ To use: copy the relevant entries into your VS Code user snippets for C++ (`cpp.
 
 | File | Description |
 |---|---|
-| [backtrack.cpp](Backtracking/backtrack.cpp) | Generates all permutations of `1..n` via backtracking |
+| [backtrack.cpp](Backtracking/backtrack.cpp) | Backtracking over `1..n`: prints every partial permutation at each recursion node (lengths 0..n), including all n! full permutations |
 | [n_queens.cpp](Backtracking/n_queens.cpp) | N-Queens - all placements via column/diagonal tracking |
 
 ## Misc/
@@ -202,10 +202,15 @@ g++ -std=c++17 -O2 -o sol DP/lcs.cpp
 ./sol
 ```
 
-Files that use PBDS (`ordered_set.cpp`, `Template/template2.cpp`) rely on GCC's `<ext/pb_ds/...>` headers and won't compile with clang without extra flags.
+All files include `<bits/stdc++.h>`, which is specific to GCC's libstdc++. On macOS, where `g++` is Apple clang, install GCC (e.g. `brew install gcc`) and compile with the versioned binary (e.g. `g++-14`). The PBDS files (`DataStructures/ordered_set.cpp`, `Template/template2.cpp`) additionally rely on GCC's `<ext/pb_ds/...>` headers.
 
 ## Notes
 
 - `deBUG.h` / the `debug(...)` macro is compiled out when `ONLINE_JUDGE` is defined, so it's safe to leave in submissions.
 - Some files include commented-out alternate approaches or complexity notes inline (e.g. `subset_sum.cpp`, `coin_change1.cpp`) - kept for quick reference during contests.
 - `Math/formulas.md`, `Misc/python_cheatsheet.py`, and `Misc/debug_checklist.md` are reference notes rather than runnable code.
+- [`Onsite Format.docx`](Onsite%20Format.docx) is a Word document with notes on the onsite contest format.
+
+## Author
+
+Ratul Hasan · [ratulhasan.dev](https://ratulhasan.dev)
