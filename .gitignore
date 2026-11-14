@@ -3,3 +3,6 @@
 *.txt
 *.exe
 *.bin
+
+# OS files
+.DS_Store
